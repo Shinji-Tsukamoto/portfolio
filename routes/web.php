@@ -50,4 +50,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'],function() {
     Route::get('home', 'Admin\HomeController@index')->name('admin.home');
 });
 
-Route::resource('users', 'UserController');
+Route::group(['prefix' => 'user'], function() {
+    Route::get('diary/create', 'User\DiaryController@add');
+});
