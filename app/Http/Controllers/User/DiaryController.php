@@ -12,4 +12,9 @@ class DiaryController extends Controller
     {
         return view('user.diary.create');
     }
+
+    public function create(Request $request)
+    {
+        return redirect('user/diary/create');
+    }
 }

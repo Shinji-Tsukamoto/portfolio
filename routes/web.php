@@ -52,4 +52,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'],function() {
 
 Route::group(['prefix' => 'user'], function() {
     Route::get('diary/create', 'User\DiaryController@add');
+    Route::post('diary/create','User\DiaryController@create');
 });
