@@ -42,4 +42,15 @@ class PostController extends Controller
         
         return redirect('user/diary/create');
     }
+
+    public function index(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        if ($cond_title != ''){
+            $posts = Post::where('title', $cond_title)->get();
+        } else {
+            $posts = Post::all();
+        }
+        return view('user.diary.index',['posts' => $posts,'cond_title' => $cond_title]);
+    }
 }

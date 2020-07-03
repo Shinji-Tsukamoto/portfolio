@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'],function() {
 });
 
 Route::group(['prefix' => 'user'], function() {
-    Route::get('diary/create', 'User\PostController@add');
-    Route::post('diary/create','User\PostController@create');
+    Route::get('diary/create', 'User\PostController@add')->middleware('auth');
+    Route::post('diary/create','User\PostController@create')->middleware('auth');
+    Route::get('diary','User\PostController@index')->middleware('auth');
 });
