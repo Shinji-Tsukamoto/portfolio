@@ -54,4 +54,7 @@ Route::group(['prefix' => 'user'], function() {
     Route::get('diary/create', 'User\PostController@add')->middleware('auth');
     Route::post('diary/create','User\PostController@create')->middleware('auth');
     Route::get('diary','User\PostController@index')->middleware('auth');
+    Route::get('diary/edit', 'User\PostController@edit')->middleware('auth');
+    Route::post('diary/edit','User\PostController@update')->middleware('auth');
+    Route::get('diary/delete','User\PostController@delete')->middleware('auth');
 });

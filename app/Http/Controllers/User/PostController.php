@@ -53,4 +53,39 @@ class PostController extends Controller
         }
         return view('user.diary.index',['posts' => $posts,'cond_title' => $cond_title]);
     }
+    public function edit(Request $request)
+    {
+        $diary = Post::find($request->id);
+        if (empty($diary)) {
+            abort(404);
+        }
+        return view('user.diary.edit', ['diary_form' => $diary]);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, Post::$rules);
+        $diary = Post::find($request->id);
+        $diary_form = $request->all();
+        if (isset($diary_form['image'])) {
+            $path = $request->file('image')->store('public/image');
+            $diary->image_path = basename($path);
+            unset($diary_form['image']);
+        } elseif (isset($request->remove)) {
+            $diary->image_path = null;
+            unset($diary_form['remove']);
+        }
+        unset($diary_form['_token']);
+
+        $diary->fill($diary_form)->save();
+
+        return redirect('user/diary/');
+    }
+
+    public function delete(Request $request)
+    {
+        $diary = Post::find($request->id);
+        $diary->delete();
+        return redirect('user/diary/');
+    }
 }
