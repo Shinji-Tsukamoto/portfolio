@@ -53,6 +53,15 @@ class PostController extends Controller
         }
         return view('user.diary.index',['posts' => $posts,'cond_title' => $cond_title]);
     }
+
+    public function show(Request $request)
+    {
+        $post = Post::find($request->id);
+        return view('user.diary.show',[
+            'post'=>$post
+        ]);
+    }
+
     public function edit(Request $request)
     {
         $diary = Post::find($request->id);

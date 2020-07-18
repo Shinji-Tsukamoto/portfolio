@@ -32,12 +32,23 @@
                             <input type="file" class="form-control-file" name="image">
                             <div class="form-text text-info">
                                 設定中: {{ $diary_form->image_path }}
+                                {{$diary_form->status_label}}
                             </div>
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
                                 </label>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="status" class="col-md-4 col-form-label text-md-right">日記の公開</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="status" name="status">
+
+                                <option value="1" selected>公開</option>
+                                <option value="2">下書き</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

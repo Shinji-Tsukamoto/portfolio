@@ -34,6 +34,15 @@
                             <input type="file" class="form-control-file" name="image_path">
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="status" class="col-md-4 col-form-label text-md-right">日記の公開</label>
+                        <div class="col-md-6">
+                            <select class="form-control" id="status" name="status">
+                                <option value="1" selected>公開</option>
+                                <option value="2">下書き</option>
+                            </select>
+                        </div>
+                    </div>            
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>                

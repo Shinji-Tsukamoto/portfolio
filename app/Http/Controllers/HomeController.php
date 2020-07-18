@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\User;
+use App\Post;
+
 
 class HomeController extends Controller
 {
@@ -21,8 +24,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $cond_title = $request->cond_title;
+        if ($cond_title != ''){
+            $posts = Diary::where('title',$cond_title)->get();
+        } else {
+        $posts = Post::where('status', Post::PUBLISHED)->get();
+        }
+
+        return view('top',['posts'=> $posts,'cond_title' => $cond_title]);
     }
 }
