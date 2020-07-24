@@ -51,6 +51,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'],function() {
 });
 
 Route::group(['prefix' => 'user'], function() {
+    Route::group(['middleware' => 'auth'],function(){
+        Route::get('profile', 'User\MypageController@show');
+        Route::get('profile/create','User\MypageController@add');
+        Route::get('profile/edit','User\MypageController@edit');                              
+        Route::post('profile/edit','User\MypageController@update');
+});
     Route::get('diary/create', 'User\PostController@add')->middleware('auth');
     Route::post('diary/create','User\PostController@create')->middleware('auth');
     Route::get('/','User\PostController@index')->middleware('auth');
@@ -58,11 +64,4 @@ Route::group(['prefix' => 'user'], function() {
     Route::get('diary/edit', 'User\PostController@edit')->middleware('auth');
     Route::post('diary/edit','User\PostController@update')->middleware('auth');
     Route::get('diary/delete','User\PostController@delete')->middleware('auth');
-});
-
-Route::group(['prefix' => 'user','middleware' => 'auth'],function(){
-    Route::get('profile', 'User\MypageController@show');
-    Route::get('profile/create','User\MypageController@add');
-    Route::get('profile/edit','User\MypageController@edit');                              
-    Route::post('profile/edit','User\MypageController@update');
 });
