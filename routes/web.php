@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Routing\RouteGroup;
+
 Auth::routes();
 
 /*
@@ -55,7 +57,7 @@ Route::group(['prefix' => 'user'], function() {
         Route::get('profile', 'User\MypageController@show');
         Route::get('profile/create','User\MypageController@add');
         Route::get('profile/edit','User\MypageController@edit');                              
-        Route::post('profile/edit','User\MypageController@update');
+        Route::post('profile/edit','User\MypageController@update');       
 });
     Route::get('diary/create', 'User\PostController@add')->middleware('auth');
     Route::post('diary/create','User\PostController@create')->middleware('auth');
@@ -64,4 +66,9 @@ Route::group(['prefix' => 'user'], function() {
     Route::get('diary/edit', 'User\PostController@edit')->middleware('auth');
     Route::post('diary/edit','User\PostController@update')->middleware('auth');
     Route::get('diary/delete','User\PostController@delete')->middleware('auth');
+});
+
+Route::group(['middleware' => ['auth', 'web']], function(){
+    Route::get('/user/password/edit','UserController@editPassword')->name('user.password.edit');
+    Route::post('/user/password/','UserController@updatePassword')->name('user.password.update');
 });

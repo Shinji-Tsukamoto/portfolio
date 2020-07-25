@@ -44,5 +44,9 @@ class MypageController extends Controller
 
        return redirect('user/profile/edit');
    }
+
+   public function showEditPasswordForm(){
+       return view('user.profile.editpassword');
+   }
     //
 }
