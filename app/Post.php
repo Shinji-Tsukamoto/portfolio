@@ -19,4 +19,9 @@ class Post extends Model
         ];
         return $status[$this->status];
     }
+
+    public function favorite_users()
+    {
+        return $this->belongsToMany(User::class,'favorites','movie_id','user_id')->withTimestamps();
+    }
 }       

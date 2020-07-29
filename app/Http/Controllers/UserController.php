@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdatePasswordRequest as RequestsUpdatePasswordRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
-use Illuminate\Http\Request\UpdatePasswordRequest;
+
 
 class UserController extends Controller
 {
@@ -17,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $count_favorite_users = $diary->favorite_users()->count();
+        $data=[
+            'count_favorite_users'=>$count_favorite_users,
+        ];
+        return view('いいね！の数を表示させるview名',$data);
     }
 
     /**
@@ -91,7 +95,7 @@ class UserController extends Controller
         return view('user.profile.user_password_edit');
     }
 
-    public function updatePassword(RequestsUpdatePasswordRequest $request){
+    public function updatePassword(UpdatePasswordRequest $request){
         //現在のパスワードが正しいかを調べる
         if(!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
