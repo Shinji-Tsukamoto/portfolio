@@ -47,7 +47,7 @@ class User extends Authenticatable
 
     }
 
-    public function favorites($diaryId)
+    public function favorite($diaryId)
     {
         $exist = $this->is_favorite($diaryId);
 
@@ -59,7 +59,7 @@ class User extends Authenticatable
         }
     }
 
-    public function unfavorite($movieId)
+    public function unfavorite($diaryId)
     {
         $exist = $this->is_favorite($diaryId);
 
