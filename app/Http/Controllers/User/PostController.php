@@ -54,8 +54,6 @@ class PostController extends Controller
         return view('user.diary.index',['posts' => $posts,'cond_title' => $cond_title]);
     }
 
-    public 
-
     public function show(Request $request)
     {
         $post = Post::find($request->id);

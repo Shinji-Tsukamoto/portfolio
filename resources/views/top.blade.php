@@ -38,7 +38,12 @@
                                 <tr>
                                     <th>{{ $diary->id }}</th>
                                     <td>{{ \Str::limit($diary->title, 100) }}</td>
-                                    <td>{{ \Str::limit($diary->body, 250) }}</td>       
+                                    <td>{{ \Str::limit($diary->body, 250) }}</td> 
+                                    <td>
+                                        <div>
+                                            <a href="{{action('HomeController@show', ['id' => $diary->id])}}">詳細を表示</a>                               
+                                        </div>
+                                    </td>    
                                 </tr>
                             @endforeach
                         </tbody>
